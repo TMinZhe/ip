@@ -22,4 +22,12 @@ public class Task {
     public String toString() {
         return getStatusIcon() + " " + description;
     }
+
+    public String toFileString() {
+        if (isDone) {
+            return "1 | " + description;
+        } else {
+            return "0 | " + description;
+        }
+    }
 }
