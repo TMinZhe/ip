@@ -1,18 +1,74 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.io.BufferedWriter;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
 
 public class ChatterBox {
+    static void saveTasks(Path path, ArrayList<Task> tasks) {
+        try (BufferedWriter writer = Files.newBufferedWriter(
+                path,
+                StandardCharsets.UTF_8,
+                StandardOpenOption.CREATE,
+                StandardOpenOption.TRUNCATE_EXISTING)) {
+
+            for (int i = 0; i < tasks.size(); i++) {
+                writer.write(tasks.get(i).toFileString());
+                writer.newLine();
+            }
+        } catch (Exception e) {
+            System.out.println("Error saving tasks:");
+            e.printStackTrace();
+        }
+
+    }
 
     public static void main(String[] args) {
         String botName = "ChatterBox";
         boolean chatting = true;
-
+        Scanner scanner = new Scanner(System.in);
         ArrayList<Task> tasks = new ArrayList<Task>();
+
+        // Level-7: created the data file and check if it exists.
+        Path txtPath = Paths.get("./data/chatterBox.txt");
+        if (!Files.exists(txtPath)) {
+            try {
+                Files.createFile(txtPath);
+                System.out.println("File created: " + txtPath.getFileName());
+            } catch (Exception e) {
+                System.out.println("Error creating file:");
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                List<String> lines = Files.readAllLines(txtPath);
+                for (String line : lines) {
+                    String[] parts = line.split(" \\| ");
+                    String description = parts[2];
+
+                    if (line.startsWith("T |")) {
+                        String task = description;
+                        ToDos newToDo = new ToDos(task);
+                        tasks.add(newToDo);
+                    } else if (line.startsWith("D |")) {
+                        Deadline newDeadline = new Deadline(description, parts[3]);
+                        tasks.add(newDeadline);
+                    } else if (line.startsWith("E |")) {
+                        Events newEvent = new Events(description, parts[3], parts[4]);
+                        tasks.add(newEvent);
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Error reading file:");
+                e.printStackTrace();
+            }
+
+        }
 
         System.out.println("        Hello! I'm " + botName);
         System.out.println("        What can I do for you?");
 
-        Scanner scanner = new Scanner(System.in);
         while (chatting) {
             try {
                 if (scanner.hasNextLine()) { // Add this check
@@ -32,6 +88,8 @@ public class ChatterBox {
                                                                         // taskNumber
                         Task index = tasks.get(taskNumber);
                         index.markAsDone();
+                        saveTasks(txtPath, tasks);
+
                         System.out.println("        Nice! I've marked this task as done:");
                         System.out.println("          " + tasks.get(taskNumber).toString());
 
@@ -41,6 +99,7 @@ public class ChatterBox {
                                                                          // taskNumber
                         Task index = tasks.get(taskNumber);
                         index.markAsNotDone();
+                        saveTasks(txtPath, tasks);
                         System.out.println("        OK, I've marked this task as not done yet:");
                         System.out.println("          " + tasks.get(taskNumber).toString());
 
@@ -51,6 +110,8 @@ public class ChatterBox {
                             throw new ChatterBoxException("     OOPS!!! The delete cannot be empty.");
                         }
                         Task removedTask = tasks.remove(taskNumber);
+                        saveTasks(txtPath, tasks);
+
                         System.out.println("        Noted. I've removed this task:");
                         System.out.println("          " + removedTask.toString());
                         System.out.println("        Now you have " + tasks.size() + " tasks in the list.");
@@ -69,6 +130,8 @@ public class ChatterBox {
                         }
                         ToDos newToDo = new ToDos(task);
                         tasks.add(newToDo);
+                        saveTasks(txtPath, tasks);
+
                         System.out.println("        Got it. I've added this task:");
                         System.out.println("          " + newToDo.toString());
                         System.out.println("        Now you have " + tasks.size() + " tasks in the list.");
@@ -85,6 +148,8 @@ public class ChatterBox {
 
                         Deadline newDeadline = new Deadline(task, deadline);
                         tasks.add(newDeadline);
+                        saveTasks(txtPath, tasks);
+
                         System.out.println("        Got it. I've added this task:");
                         System.out.println("          " + newDeadline.toString());
                         System.out.println("        Now you have " + tasks.size() + " tasks in the list.");
@@ -107,6 +172,8 @@ public class ChatterBox {
 
                         Events newEvent = new Events(task, at, to);
                         tasks.add(newEvent);
+                        saveTasks(txtPath, tasks);
+
                         System.out.println("        Got it. I've added this task:");
                         System.out.println("          " + newEvent.toString());
                         System.out.println("        Now you have " + tasks.size() + " tasks in the list.");
