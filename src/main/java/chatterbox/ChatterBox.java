@@ -5,10 +5,10 @@ import java.util.Scanner;
 
 import chatterbox.exception.ChatterBoxException;
 import chatterbox.parser.Parser;
+import chatterbox.storage.Storage;
 import chatterbox.task.Task;
 import chatterbox.task.TaskList;
 import chatterbox.ui.Ui;
-import storage.Storage;
 
 public class ChatterBox {
     private Storage storage;
