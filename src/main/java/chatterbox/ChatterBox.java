@@ -1,5 +1,14 @@
+package chatterbox;
+
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import chatterbox.exception.ChatterBoxException;
+import chatterbox.parser.Parser;
+import chatterbox.task.Task;
+import chatterbox.task.TaskList;
+import chatterbox.ui.Ui;
+import storage.Storage;
 
 public class ChatterBox {
     private Storage storage;

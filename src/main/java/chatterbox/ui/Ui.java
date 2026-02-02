@@ -1,3 +1,5 @@
+package chatterbox.ui;
+
 public class Ui {
     private final String botName = "ChatterBox";
 
