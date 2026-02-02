@@ -10,10 +10,22 @@ import chatterbox.task.Task;
 import chatterbox.task.TaskList;
 import chatterbox.ui.Ui;
 
+/**
+ * Represents the main method for the ChatterBox task management
+ * application.
+ * It initializes the user interface, seeding data, and task list.
+ */
+
 public class ChatterBox {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+
+    /**
+     * Constructs an instance with the specified file path for database.
+     *
+     * @param filePath The filepath where the chat is stored.
+     */
 
     public ChatterBox(String filePath) {
         ui = new Ui();
@@ -27,6 +39,10 @@ public class ChatterBox {
         }
     }
 
+    /**
+     * Starts the application loop, reading user input and passing it to the parser
+     * until the user terminates the session.
+     */
     public void run() {
         ui.showWelcome();
         Scanner scanner = new Scanner(System.in);
@@ -45,6 +61,9 @@ public class ChatterBox {
         }
     }
 
+    /**
+     * Main method to start the ChatterBox application.
+     */
     public static void main(String[] args) {
         ChatterBox chatterBox = new ChatterBox("./data/chatterBox.txt");
         chatterBox.run();

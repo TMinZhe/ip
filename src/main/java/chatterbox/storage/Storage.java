@@ -20,10 +20,22 @@ import java.time.LocalDateTime;
 public class Storage {
     private Path txtPath;
 
+    /**
+     * Initializes the storage with a specific file path.
+     *
+     * @param filePath filepath to where the data is stored.
+     */
     public Storage(String filePath) {
         this.txtPath = Paths.get(filePath);
     }
 
+    /**
+     * Loads the task list from the local storage file.
+     * If the file does not exist, it creates one.
+     *
+     * @return An ArrayList of tasks loaded from the file.
+     * @throws Exception If there is an error during file reading or parsing.
+     */
     public ArrayList<Task> loadChat() throws Exception {
         ArrayList<Task> tasks = new ArrayList<Task>();
         if (!Files.exists(txtPath)) {
@@ -68,6 +80,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves the current list of tasks to the txt file.
+     *
+     * @param tasks The list of current tasks to save in the file.
+     */
     public void saveTasks(ArrayList<Task> tasks) {
         try (BufferedWriter writer = Files.newBufferedWriter(
                 txtPath,
