@@ -1,4 +1,4 @@
-package storage;
+package chatterbox.storage;
 
 import java.util.ArrayList;
 import java.util.List;
