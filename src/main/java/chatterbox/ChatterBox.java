@@ -29,12 +29,12 @@ public class ChatterBox {
 
     public void run() {
         ui.showWelcome();
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         boolean isChatting = true;
         while (isChatting) {
             try {
-                if (scanner.hasNextLine()) {
-                    String userInput = scanner.nextLine();
+                if (sc.hasNextLine()) {
+                    String userInput = sc.nextLine();
                     Parser.parse(userInput, tasks, ui, storage);
                 } else {
                     isChatting = false;
