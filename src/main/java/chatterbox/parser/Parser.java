@@ -14,6 +14,17 @@ import chatterbox.task.ToDos;
 import chatterbox.ui.Ui;
 
 public class Parser {
+    /**
+     * Parses the user input and run the command.
+     * commands include adding tasks (todo, deadline, event), listing, marking,
+     * unmarking, and deleting tasks.
+     *
+     * @param userInput The string user input
+     * @param tasks     An ArrayList containing current tasks.
+     * @param ui        The UI object to interact with the user.
+     * @param storage   The Storage object to save chat to data file.
+     * @throws ChatterBoxException If the command is invalid
+     */
     public static void parse(String userInput, TaskList tasks, Ui ui, Storage storage) throws ChatterBoxException {
         if (userInput.equalsIgnoreCase("bye")) {
             ui.showBye();
