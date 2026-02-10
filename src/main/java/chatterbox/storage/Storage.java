@@ -51,6 +51,9 @@ public class Storage {
             try {
                 List<String> lines = Files.readAllLines(txtPath);
                 for (String line : lines) {
+                    if (line.trim().isEmpty()) {
+                        continue;
+                    }
                     String[] parts = line.split(" \\| ");
                     String description = parts[2];
 

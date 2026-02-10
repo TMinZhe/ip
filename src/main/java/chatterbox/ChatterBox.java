@@ -61,6 +61,16 @@ public class ChatterBox {
         }
     }
 
+    public String getResponse(String input) {
+        try {
+            // You may need to refactor Parser.parse to return a String
+            // instead of taking 'ui' as a parameter to print things.
+            return Parser.parse(input, tasks, ui, storage);
+        } catch (ChatterBoxException e) {
+            return e.getMessage();
+        }
+    }
+
     /**
      * Main method to start the ChatterBox application.
      */

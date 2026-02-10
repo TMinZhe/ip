@@ -3,20 +3,25 @@ package chatterbox.ui;
 public class Ui {
     private final String botName = "ChatterBox";
 
-    public void showWelcome() {
-        System.out.println("        Hello! I'm " + botName);
-        System.out.println("        What can I do for you?");
+    public String showWelcome() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("        Hello! I'm " + botName + "\n");
+        sb.append("        What can I do for you?\n");
+        return sb.toString();
     }
 
-    public void showMessage(String message) {
-        System.out.println("        " + message);
+    public String showMessage(String message) {
+        // System.out.println(" " + message);
+        return "        " + message + "\n";
     }
 
-    public void showBye() {
-        System.out.println("        Bye. Hope to see you again soon!");
+    public String showBye() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("        Bye. Hope to see you again soon!\n");
+        return sb.toString();
     }
 
-    public void showError(String message) {
-        System.out.println(message);
+    public String showError(String message) {
+        return "        " + message + "\n";
     }
 }
