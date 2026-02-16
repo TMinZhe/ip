@@ -10,6 +10,7 @@ public class TaskList {
     }
 
     public Task getTasks(int index) {
+        assert index >= 0 && index < tasks.size() : "index out of the limit";
         return tasks.get(index);
     }
 
@@ -22,6 +23,7 @@ public class TaskList {
     }
 
     public void removeTask(int index) {
+        assert index >= 0 && index < tasks.size() : "index out of the limit";
         tasks.remove(index);
     }
 

@@ -26,6 +26,10 @@ public class Parser {
      * @throws ChatterBoxException If the command is invalid
      */
     public static String parse(String userInput, TaskList tasks, Ui ui, Storage storage) throws ChatterBoxException {
+        assert tasks != null : "Tasklist shouln't be null";
+        assert ui != null : "Ui shouln't be null";
+        assert storage != null : "Storage shouln't be null";
+        
         if (userInput.equalsIgnoreCase("bye")) {
             StringBuilder sb = new StringBuilder();
             sb.append(ui.showBye());

@@ -26,6 +26,7 @@ public class Storage {
      * @param filePath filepath to where the data is stored.
      */
     public Storage(String filePath) {
+        assert filePath != null && !filePath.isEmpty() : "Filepath is empty";
         this.txtPath = Paths.get(filePath);
     }
 
