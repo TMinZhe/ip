@@ -22,6 +22,11 @@ public class TaskList {
         tasks.add(task);
     }
 
+    public void addTag(int index, String tag) {   
+        tasks.get(index).setTag(tag);
+        
+    }
+
     public void removeTask(int index) {
         assert index >= 0 && index < tasks.size() : "index out of the limit";
         tasks.remove(index);

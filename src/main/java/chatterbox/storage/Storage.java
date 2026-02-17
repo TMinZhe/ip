@@ -64,19 +64,39 @@ public class Storage {
 
     private Task parseLineToTask(String line) {
         String[] parts = line.split(" \\| ");
+        if (parts.length < 2) {
+            return new Task(line);
+        }
+
         String type = parts[0];
+        boolean isDone = parts[1].equals("1");
         String description = parts[2];
 
-        switch (type) {
-        case "T":
-            return new ToDos(description);
-        case "D":
-            return new Deadline(description, LocalDate.parse(parts[3]));
-        case "E":
-            return new Events(description, LocalDateTime.parse(parts[3]), LocalDateTime.parse(parts[4]));
-        default:
-            return new Task(description);
+        Task task;
+        try {
+            switch (type) {
+            case "T":
+                task = new ToDos(description);
+                break;
+            case "D":
+                task = new Deadline(description, LocalDate.parse(parts[3]));
+                break;
+            case "E":
+                task = new Events(description, LocalDateTime.parse(parts[3]), LocalDateTime.parse(parts[4]));
+                break;
+            default:
+                
+                task = new Task(parts.length > 1 ? parts[1] : type);
+                break;
+            }
+        } catch (Exception e) {
+            return new Task("Corrupted Entry: " + line);
         }
+
+        if (isDone) {
+            task.markAsDone(); // Actually apply the loaded status
+        }
+        return task;
     }
 
     /**

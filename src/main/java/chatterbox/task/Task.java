@@ -2,6 +2,7 @@ package chatterbox.task;
 
 public class Task {
     protected String description;
+    protected String tag = "";
     protected boolean isDone;
 
     /**
@@ -11,6 +12,7 @@ public class Task {
      */
     public Task(String description) {
         this.description = description;
+        this.tag = "";
         this.isDone = false;
     }
 
@@ -37,8 +39,17 @@ public class Task {
         this.isDone = false;
     }
 
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
     public String toString() {
-        return getStatusIcon() + " " + description;
+        if (tag != "") {
+            return getStatusIcon() + " " + description + " #" + tag;
+        } else {
+            return getStatusIcon() + " " + description;
+        }
+        
     }
 
     public String toFileString() {
