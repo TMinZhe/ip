@@ -38,7 +38,6 @@ public class Storage {
      * @throws Exception If there is an error during file reading or parsing.
      */
     public ArrayList<Task> loadChat() throws Exception {
-        ArrayList<Task> tasks = new ArrayList<Task>();
         if (!Files.exists(txtPath)) {
             try {
                 Files.createFile(txtPath);
@@ -47,40 +46,36 @@ public class Storage {
                 System.out.println("Error creating file:");
                 e.printStackTrace();
             }
-            return tasks;
-        } else {
-            try {
-                List<String> lines = Files.readAllLines(txtPath);
-                for (String line : lines) {
-                    if (line.trim().isEmpty()) {
-                        continue;
-                    }
-                    String[] parts = line.split(" \\| ");
-                    String description = parts[2];
+            return new ArrayList<>();
+        }
+        return loadTasksFromFile();
+    }
 
-                    if (line.startsWith("T |")) {
-                        String task = description;
-                        ToDos newToDo = new ToDos(task);
-                        tasks.add(newToDo);
-                    } else if (line.startsWith("D |")) {
-                        Deadline newDeadline = new Deadline(description, LocalDate.parse(parts[3]));
-                        tasks.add(newDeadline);
-                    } else if (line.startsWith("E |")) {
-                        Events newEvent = new Events(description, LocalDateTime.parse(parts[3]),
-                                LocalDateTime.parse(parts[4]));
-                        tasks.add(newEvent);
-                    } else {
-                        Task newTask = new Task(description);
-                        tasks.add(newTask);
-                    }
-                }
-
-            } catch (Exception e) {
-                System.out.println("Error reading file:");
-                e.printStackTrace();
+    private ArrayList<Task> loadTasksFromFile() throws Exception {
+        ArrayList<Task> tasks = new ArrayList<>();
+        List<String> lines = Files.readAllLines(txtPath);
+        for (String line : lines) {
+            if (!line.trim().isEmpty()) {
+                tasks.add(parseLineToTask(line));
             }
-            return tasks;
+        }
+        return tasks;
+    }
 
+    private Task parseLineToTask(String line) {
+        String[] parts = line.split(" \\| ");
+        String type = parts[0];
+        String description = parts[2];
+
+        switch (type) {
+        case "T":
+            return new ToDos(description);
+        case "D":
+            return new Deadline(description, LocalDate.parse(parts[3]));
+        case "E":
+            return new Events(description, LocalDateTime.parse(parts[3]), LocalDateTime.parse(parts[4]));
+        default:
+            return new Task(description);
         }
     }
 
