@@ -11,7 +11,6 @@ public class Ui {
     }
 
     public String showMessage(String message) {
-        // System.out.println(" " + message);
         return "        " + message + "\n";
     }
 
