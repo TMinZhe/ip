@@ -1,30 +1,17 @@
-# Duke User Guide
+# ChatterBox Task Manager
 
-// Update the title above to match the actual product name
+ChatterBox is a personal assistant chatbot designed to help you keep track of various tasks including ToDos, Deadlines, and Events. It features both a Command Line Interface (CLI) and a Graphical User Interface (GUI).
 
-// Product screenshot goes here
+## Features
 
-// Product intro goes here
+- **Task Management**: Add, delete, and list tasks.
+- **Task Types**:
+  - `todo`: Tasks without any date/time.
+  - `deadline`: Tasks that need to be done before a specific date/time.
+  - `event`: Tasks that start and end at specific times.
+- **Persistence**: Automatically saves your tasks to `./data/chatterBox.txt`.
+- **GUI**: A user-friendly interface powered by JavaFX.
 
-## Adding deadlines
+## Setting Up
 
-// Describe the action and its outcome.
-
-// Give examples of usage
-
-Example: `keyword (optional arguments)`
-
-// A description of the expected outcome goes here
-
-```
-expected output
-```
-
-## Feature ABC
-
-// Feature details
-
-
-## Feature XYZ
-
-// Feature details
+Prerequisites: JDK 17.
