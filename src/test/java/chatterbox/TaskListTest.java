@@ -15,14 +15,14 @@ public class TaskListTest {
     @Test
     public void testAddTask() {
         TaskList tasks = new TaskList(new ArrayList<>());
-        tasks.addTask(new ToDos("read books"));
+        tasks.addTask(new ToDos("read book"));
         assertEquals(1, tasks.getSize());
     }
 
     @Test
     public void testRemoveTask() {
         TaskList tasks = new TaskList(new ArrayList<>());
-        tasks.addTask(new ToDos("read books"));
+        tasks.addTask(new ToDos("read book"));
         tasks.removeTask(0);
         assertEquals(0, tasks.getSize());
     }
