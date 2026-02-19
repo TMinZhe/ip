@@ -75,26 +75,26 @@ public class Storage {
         Task task;
         try {
             switch (type) {
-            case "T":
-                task = new ToDos(description);
-                break;
-            case "D":
-                task = new Deadline(description, LocalDate.parse(parts[3]));
-                break;
-            case "E":
-                task = new Events(description, LocalDateTime.parse(parts[3]), LocalDateTime.parse(parts[4]));
-                break;
-            default:
-                
-                task = new Task(parts.length > 1 ? parts[1] : type);
-                break;
+                case "T":
+                    task = new ToDos(description);
+                    break;
+                case "D":
+                    task = new Deadline(description, LocalDate.parse(parts[3]));
+                    break;
+                case "E":
+                    task = new Events(description, LocalDateTime.parse(parts[3]), LocalDateTime.parse(parts[4]));
+                    break;
+                default:
+
+                    task = new Task(parts.length > 1 ? parts[1] : type);
+                    break;
             }
         } catch (Exception e) {
             return new Task("Corrupted Entry: " + line);
         }
 
         if (isDone) {
-            task.markAsDone(); // Actually apply the loaded status
+            task.markAsDone();
         }
         return task;
     }
