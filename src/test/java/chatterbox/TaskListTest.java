@@ -28,10 +28,10 @@ public class TaskListTest {
     }
 
     @Test
-    public void testGetTask_invalidIndex_throwsIndexOutOfBoundsException() {
+    public void testGetTask_invalidIndex_throwsAssertionError() {
         TaskList tasks = new TaskList(new ArrayList<>());
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            tasks.getTask(0);
+        assertThrows(AssertionError.class, () -> {
+            tasks.getTasks(0);
         });
     }
 }
