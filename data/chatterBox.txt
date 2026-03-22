@@ -1,2 +1,2 @@
-T | 0 | read book
-D | 0 | return book | 2024-01-01
+D | 0 | return book | 2024-06-01
+E | 0 | meeting | 2024-06-01T14:00 | 2024-06-01T15:00

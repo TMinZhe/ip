@@ -29,6 +29,7 @@ public class ChatterBox {
 
     public ChatterBox(String filePath) {
         ui = new Ui();
+
         storage = new Storage(filePath);
         try {
             ArrayList<Task> loadedTasks = storage.loadChat();
@@ -39,12 +40,16 @@ public class ChatterBox {
         }
     }
 
+    public String getWelcomeMessage() {
+        return ui.showWelcome();
+    }
+
     /**
      * Starts the application loop, reading user input and passing it to the parser
      * until the user terminates the session.
      */
     public void run() {
-        ui.showWelcome();
+
         Scanner sc = new Scanner(System.in);
         boolean isChatting = true;
         while (isChatting) {

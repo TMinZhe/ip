@@ -37,6 +37,8 @@ public class MainWindow extends AnchorPane {
 
     public void setChatterBox(ChatterBox c) {
         this.chatterBox = c;
+        dialogContainer.getChildren().addAll(
+                DialogBox.getChatterBoxDialog(chatterBox.getWelcomeMessage(), dukeImage));
     }
 
     /**
