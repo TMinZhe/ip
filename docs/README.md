@@ -1,6 +1,7 @@
 # ChatterBox User Guide
 
 ![alt text](image.png)
+
 ChatterBox is a personal assistant chatbot designed to help you keep track of various tasks including ToDos, Deadlines, and Events. It features both a Command Line Interface (CLI) and a Graphical User Interface (GUI).
 
 ## Quick Start
@@ -19,7 +20,7 @@ Adds a simple task with no specific date or time.
 - **Format:** `todo DESCRIPTION`
 - **Example:** `todo read book`
 
-````
+```
 Got it. I've added this task:
   [T][ ] read book
 Now you have 1 tasks in the list.
@@ -27,6 +28,7 @@ Now you have 1 tasks in the list.
 
 **Adding a deadline:** `deadline`
 Adds a task with a specific date.
+
 - **Format:** `deadline DESCRIPTION /by YYYY-MM-DD`
 - **Example:** `deadline return book /by 2026-03-25`
 
@@ -38,16 +40,19 @@ Now you have 2 tasks in the list.
 
 **Adding an event:** `event`
 Adds a task with a start and end date/time.
+
 - **Format:** `event DESCRIPTION /from START_TIME /to END_TIME`
 - **Example:** `event project meeting /from 2026-03-17T14:00 /to 2026-03-17T16:00`
 
-```Got it. I've added this task:
+```
+Got it. I've added this task:
   [E][ ] project meeting (from: Mar 17 2026 14:00 to: Mar 17 2026 16:00)
 Now you have 3 tasks in the list.
 ```
 
 **Listing all tasks:** `list`
 Shows all tasks currently stored in your list
+
 - **Format:** `list`
 
 ```
@@ -59,6 +64,7 @@ Here are the tasks in your list:
 
 **Marking a task as done:** `mark`
 Marks a specific task as completed
+
 - **Format:** `mark INDEX`
 - **Example:** `mark 1`
 
@@ -69,6 +75,7 @@ Nice! I've marked this task as done:
 
 **Unmarking a task:** `unmark`
 Marks a completed tasks as not done yet
+
 - **Format:** `unmark INDEX`
 - **Example:** `unmark 1`
 
@@ -79,6 +86,7 @@ OK, I've marked this task as not done yet:
 
 **Deleting a task:** `delete`
 Removes the specific task from the list
+
 - **Format:** `delete INDEX`
 - **Example:** `delete 2`
 
@@ -90,6 +98,7 @@ Now you have 2 tasks in the list.
 
 **Tagging a task:** `tag`
 Adds a custom tag to a task for easier categorization
+
 - **Format:** `tag INDEX TAG_NAME`
 - **Example:** `tag 1 urgent`
 
@@ -99,7 +108,8 @@ I've added the tag #urgent to this task:
 ```
 
 **Finding tasks:** `find`
-Searches for tasks whose description contains the given keyboard
+Searches for tasks whose description contains the given keyword
+
 - **Format:** `find KEYWORD`
 - **Example:** `find book`
 
@@ -110,7 +120,5 @@ Here are the matching tasks in your list:
 
 **Exiting the program:** `bye`
 Exits the ChatterBox application
+
 - **Format:** `bye`
-
-
-````
